@@ -16,6 +16,5 @@
 
 ## Tasks
 
-- [Java](java.md)
-- [JavaScript](javascript.md)
-- [Embedded](embedded.md)
+- [Backend (Java, C#)](backend.md)
+- [FullStack](fullstack.md)
