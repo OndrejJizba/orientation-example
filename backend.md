@@ -1,14 +1,39 @@
 # URL aliaser
 
 We are going to create something like a [URL shortening](https://en.wikipedia.org/wiki/URL_shortening)
-application but we are not going to struggle with random strings rather we will
+application, but we are not going to struggle with random strings rather we will
 create a *"URL aliasing application"*.
 
 **Read the whole description in order to understand the application.**
 
+## Database
+
+Create a database named `url_aliaser`.
+There should be 2 tables in the database:
+- `links`
+- `aliases`
+
+The `links` table should have at least the following columns:
+- `id` - auto-incrementing integer
+- `url` - string
+
+The `aliases` table should have at least the following columns:
+- `id` - auto-incrementing integer
+- `alias` - string
+
+A `link` could have multiple `aliases`, but an `alias` can only belong to one `link`.
+Set up the ORM (Entities) to reflect this relationship.
+
 ## `GET /`
 - The main page should be rendered
-- It should contain a form with two labels, two input fields and a submit button
+- It should list all the aliases with the following columns:
+  - `alias`
+  - `hitCount`
+  - `link`
+- It should contain a form with we can add new aliases
+  - It should have a link dropdown which lists all the links
+  - It should have an input field for the alias
+  - It should have a submit button
 - The form should be submitted to `POST /save-link`
 
 ### The main page has 3 scenarios
