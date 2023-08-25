@@ -102,7 +102,7 @@ Set up the ORM (Entities) to reflect this relationship.
     "secretCode": "0483"
   }
   ```
-- If the link doesn't exist respond with 404 status code
+- If the alias doesn't exist respond with 404 status code
 - If it exists but the provided secret code doesn't match respond with 403
   status code
 - If it exists and the provided secret code matches delete the entry from the
