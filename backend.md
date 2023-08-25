@@ -33,7 +33,7 @@ Set up the ORM (Entities) to reflect this relationship.
   - `Alias`
   - `Hit count`
 - It should contain a form with we can add new aliases
-  - It should have a link dropdown which lists all the links
+  - It should have a URL text input
   - It should have an input field for the alias
   - It should have a submit button
 - The form should be submitted to `POST /save-link`
