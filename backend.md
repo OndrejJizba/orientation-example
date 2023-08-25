@@ -20,6 +20,8 @@ The `links` table should have at least the following columns:
 The `aliases` table should have at least the following columns:
 - `id` - auto-incrementing integer
 - `alias` - string
+- `hitCount` - integer
+- `secretCode` - string
 
 A `link` could have multiple `aliases`, but an `alias` can only belong to one `link`.
 Set up the ORM (Entities) to reflect this relationship.
@@ -27,9 +29,9 @@ Set up the ORM (Entities) to reflect this relationship.
 ## `GET /`
 - The main page should be rendered
 - It should list all the aliases with the following columns:
+  - `link`
   - `alias`
   - `hitCount`
-  - `link`
 - It should contain a form with we can add new aliases
   - It should have a link dropdown which lists all the links
   - It should have an input field for the alias
@@ -66,27 +68,33 @@ Set up the ORM (Entities) to reflect this relationship.
 - If the alias exists it should increment the hit count and redirect to the URL
   otherwise respond with 404 status code
 
-## `GET /api/links`
+## `GET /api/aliases`
 - It should respond with the stored entries in the following JSON format
 - Note that the secret code is not included
   ```json
   [
     {
-      "id": 0,
+      "id": 1,
       "url": "http://reddit.com",
       "alias": "bye-bye-time",
       "hitCount": 0
     },
     {
-      "id": 1,
+      "id": 2,
       "url": "http://youtube.com",
       "alias": "watch-videos",
       "hitCount": 4
+    },
+    {
+      "id": 3,
+      "url": "http://reddit.com",
+      "alias": "another-time",
+      "hitCount": 0
     }
   ]
   ```
 
-## `DELETE /api/links/{id}`
+## `DELETE /api/aliases/{id}`
 - The secret code should be in the request's body in JSON format
   ```json
   {
@@ -99,7 +107,7 @@ Set up the ORM (Entities) to reflect this relationship.
 - If it exists and the provided secret code matches delete the entry from the
   database and respond with 204 status code
 
-# Question
+# SQL
 
 Given the following table named `applicants`.
 
@@ -121,5 +129,8 @@ Given the following table named `applicants`.
 | 13 | Lada Stýskalová    | Czech Republic | 27  |
 | 14 | Dagmar Benešová    | Czech Republic | 33  |
 
-Write an SQL query to select the name of the 5 youngest applicants from the
-Czech Republic.
+- Write an SQL query to select the name of the 5 youngest applicants from the
+  Czech Republic.
+- Count the number of applicants from Hungary who are aged 35 and above.
+- Retrieve the names of all applicants who have a name starting with the letter 'B'.
+- Determine the average age of applicants from each country.
