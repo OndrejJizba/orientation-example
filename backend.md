@@ -61,8 +61,9 @@ Set up the ORM (Entities) to reflect this relationship.
 - If the alias is already in use redirect to the main page with the error scenario
 - Else
   - Generate a secret code which is just a random 4-digit string consisting of numbers
-  - Store the entry in the database
-  - Redirect to the main page with the success scenario
+    - Store the entries in the database
+    - If the link is already in the database add the new alias to the existing entry
+    - Redirect to the main page with the success scenario
 
 ## `GET /a/{alias}`
 - If the alias exists it should increment the hit count and redirect to the URL
