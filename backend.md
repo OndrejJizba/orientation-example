@@ -132,6 +132,18 @@ Given the following table named `applicants`.
 
 - Write an SQL query to select the name of the 5 youngest applicants from the
   Czech Republic.
+```mysql
+
+```
 - Count the number of applicants from Hungary who are aged 35 and above.
+```mysql
+
+```
 - Retrieve the names of all applicants who have a name starting with the letter 'B'.
+```mysql
+
+```
 - Determine the average age of applicants from each country.
+```mysql
+
+```
