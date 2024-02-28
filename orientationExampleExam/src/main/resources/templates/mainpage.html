@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>URL Aliaser</title>
+</head>
+<body>
+    <h1>URL Aliaser</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>URL</th>
+                <th>Alias</th>
+                <th>Hit count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="alias : ${aliases}">
+                <td th:text="${alias.getLink().url}"></td>
+                <td th:text="${alias.alias}"></td>
+                <td th:text="${alias.hitCount}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
