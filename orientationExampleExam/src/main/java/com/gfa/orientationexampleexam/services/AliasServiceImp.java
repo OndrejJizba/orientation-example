@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 public class AliasServiceImp implements AliasService{
@@ -34,5 +36,11 @@ public class AliasServiceImp implements AliasService{
         Random random = new Random();
         Integer randomValue = random.nextInt(9999);
         return String.format("%04d", randomValue);
+    }
+
+    @Override
+    public boolean aliasAvailable(String alias) {
+        List<Alias> reducedList = aliasRepository.findAll().stream().filter(a -> Objects.equals(a.getAlias(), alias)).toList();
+        return reducedList.size() == 0;
     }
 }

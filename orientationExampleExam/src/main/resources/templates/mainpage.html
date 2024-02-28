@@ -22,11 +22,12 @@
             </tr>
         </tbody>
     </table>
+    <p th:utext="${saveMessage}"></p>
 <form action="/save-link" method="post">
     <label for="url" id="url">URL</label>
-    <input type="text" name="url">
+    <input type="text" name="url" th:value="${url}">
     <label for="alias" id="alias">Alias</label>
-    <input type="text" name="alias">
+    <input type="text" name="alias" th:value="${alias}">
     <button type="submit">Submit</button>
 </form>
 </body>

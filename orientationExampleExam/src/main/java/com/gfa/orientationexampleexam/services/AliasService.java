@@ -8,4 +8,5 @@ public interface AliasService {
     List<Alias> getAllAliases();
     Alias saveAlias(Alias alias);
     String generateSecretCode();
+    boolean aliasAvailable(String alias);
 }

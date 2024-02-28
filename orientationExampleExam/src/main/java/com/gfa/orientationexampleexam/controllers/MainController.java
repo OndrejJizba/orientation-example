@@ -31,12 +31,21 @@ public class MainController {
     }
 
     @PostMapping("/save-link")
-    public String saveLink(@RequestParam String url, @RequestParam String alias){
-        Link link = new Link(url);
-        Alias alias1 = new Alias(alias);
-        alias1.setLink(link);
-        linkService.saveLink(link);
-        aliasService.saveAlias(alias1);
-        return "redirect:/";
+    public String saveLink(@RequestParam String url, @RequestParam String alias, Model model){
+        if (aliasService.aliasAvailable(alias)) {
+            Link link = new Link(url);
+            Alias alias1 = new Alias(alias);
+            alias1.setLink(link);
+            linkService.saveLink(link);
+            aliasService.saveAlias(alias1);
+            model.addAttribute("saveMessage", "Your URL is aliased to <b>" + alias + "</b> and your secret code is <b>" + alias1.getSecretCode() + "</b>.");
+        } else {
+            model.addAttribute("saveMessage", "<p style='color:red;'> Your alias is already in use!</p>");
+            model.addAttribute("url", url);
+            model.addAttribute("alias", alias);
+        }
+        model.addAttribute("aliases", aliasService.getAllAliases());
+        model.addAttribute("links", linkService.getAllLinks());
+        return "mainpage";
     }
 }
