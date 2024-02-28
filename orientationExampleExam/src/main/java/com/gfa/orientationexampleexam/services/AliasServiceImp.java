@@ -1,15 +1,15 @@
 package com.gfa.orientationexampleexam.services;
 
 import com.gfa.orientationexampleexam.models.Alias;
-import com.gfa.orientationexampleexam.models.Link;
+import com.gfa.orientationexampleexam.models.DTOs.AliasDTO;
 import com.gfa.orientationexampleexam.repositories.AliasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 @Service
 public class AliasServiceImp implements AliasService{
@@ -54,5 +54,20 @@ public class AliasServiceImp implements AliasService{
     @Override
     public Alias findByAlias(String alias) {
         return aliasRepository.findByAlias(alias);
+    }
+
+    @Override
+    public List<AliasDTO> getAllAliasDTO() {
+        List<AliasDTO> aliasDTOList = new ArrayList<>();
+        List<Alias> aliasList = aliasRepository.findAll();
+        for (Alias alias : aliasList){
+            AliasDTO aliasDTO = new AliasDTO();
+            aliasDTO.setId(alias.getId());
+            aliasDTO.setUrl(alias.getLink().getUrl());
+            aliasDTO.setAlias(alias.getAlias());
+            aliasDTO.setHitCount(alias.getHitCount());
+            aliasDTOList.add(aliasDTO);
+        }
+        return aliasDTOList;
     }
 }
