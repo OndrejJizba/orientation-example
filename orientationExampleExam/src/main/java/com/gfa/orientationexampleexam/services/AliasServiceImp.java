@@ -21,4 +21,9 @@ public class AliasServiceImp implements AliasService{
     public List<Alias> getAllAliases() {
         return aliasRepository.findAll();
     }
+
+    @Override
+    public Alias saveAlias(Alias alias) {
+        return aliasRepository.save(alias);
+    }
 }

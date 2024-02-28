@@ -19,7 +19,7 @@ public class Link {
     private Integer id;
     private String url;
     @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "link")
-    List<Alias> aliasList;
+    private List<Alias> aliasList;
 
     public Link(String url) {
         this.url = url;

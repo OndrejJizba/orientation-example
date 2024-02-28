@@ -21,4 +21,9 @@ public class LinkServiceImp  implements LinkService{
     public List<Link> getAllLinks() {
         return linkRepository.findAll();
     }
+
+    @Override
+    public Link saveLink(Link link) {
+        return linkRepository.save(link);
+    }
 }

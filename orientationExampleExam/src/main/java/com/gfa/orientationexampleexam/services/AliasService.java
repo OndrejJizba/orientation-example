@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AliasService {
     List<Alias> getAllAliases();
+    Alias saveAlias(Alias alias);
 }

@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface LinkService {
     List<Link> getAllLinks();
+    Link saveLink(Link link);
 }
