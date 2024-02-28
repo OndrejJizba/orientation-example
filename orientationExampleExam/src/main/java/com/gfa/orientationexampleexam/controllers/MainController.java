@@ -4,7 +4,6 @@ import com.gfa.orientationexampleexam.models.Alias;
 import com.gfa.orientationexampleexam.models.Link;
 import com.gfa.orientationexampleexam.services.AliasService;
 import com.gfa.orientationexampleexam.services.LinkService;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,14 +26,14 @@ public class MainController {
     }
 
     @GetMapping("")
-    public String mainPage(Model model){
+    public String mainPage(Model model) {
         model.addAttribute("aliases", aliasService.getAllAliases());
         model.addAttribute("links", linkService.getAllLinks());
         return "mainpage";
     }
 
     @PostMapping("/save-link")
-    public String saveLink(@RequestParam String url, @RequestParam String alias, Model model){
+    public String saveLink(@RequestParam String url, @RequestParam String alias, Model model) {
         if (aliasService.aliasAvailable(alias)) {
             Link link = new Link(url);
             Alias alias1 = new Alias(alias);

@@ -46,12 +46,6 @@ public class AliasServiceImp implements AliasService{
     }
 
     @Override
-    public boolean updateAlias(String url) {
-        List<Alias> reducedList = aliasRepository.findAll().stream().filter(a -> Objects.equals(a.getLink().getUrl(), url)).toList();
-        return reducedList.size() == 1;
-    }
-
-    @Override
     public Alias findByAlias(String alias) {
         return aliasRepository.findByAlias(alias);
     }
@@ -78,10 +72,6 @@ public class AliasServiceImp implements AliasService{
         return alias;
     }
 
-    @Override
-    public Alias findBySecretCode(String secretCode) {
-        return aliasRepository.findBySecretCode(secretCode);
-    }
 
     @Override
     public Alias findById(Integer id) throws Exception {
