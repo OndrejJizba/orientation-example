@@ -1,6 +1,7 @@
 package com.gfa.orientationexampleexam.services;
 
 import com.gfa.orientationexampleexam.models.Alias;
+import com.gfa.orientationexampleexam.models.Link;
 import com.gfa.orientationexampleexam.repositories.AliasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,5 +43,16 @@ public class AliasServiceImp implements AliasService{
     public boolean aliasAvailable(String alias) {
         List<Alias> reducedList = aliasRepository.findAll().stream().filter(a -> Objects.equals(a.getAlias(), alias)).toList();
         return reducedList.size() == 0;
+    }
+
+    @Override
+    public boolean updateAlias(String url) {
+        List<Alias> reducedList = aliasRepository.findAll().stream().filter(a -> Objects.equals(a.getLink().getUrl(), url)).toList();
+        return reducedList.size() == 1;
+    }
+
+    @Override
+    public Alias findByAlias(String alias) {
+        return aliasRepository.findByAlias(alias);
     }
 }

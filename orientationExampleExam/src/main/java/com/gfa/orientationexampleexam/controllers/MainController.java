@@ -4,10 +4,13 @@ import com.gfa.orientationexampleexam.models.Alias;
 import com.gfa.orientationexampleexam.models.Link;
 import com.gfa.orientationexampleexam.services.AliasService;
 import com.gfa.orientationexampleexam.services.LinkService;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -47,5 +50,20 @@ public class MainController {
         model.addAttribute("aliases", aliasService.getAllAliases());
         model.addAttribute("links", linkService.getAllLinks());
         return "mainpage";
+    }
+
+    @GetMapping("/a/{alias}")
+    public String incrementHitCount(@PathVariable String alias, HttpServletResponse response){
+        if (aliasService.findByAlias(alias) != null){
+            Alias updatedAlias = aliasService.findByAlias(alias);
+            updatedAlias.setHitCount(updatedAlias.getHitCount() + 1);
+            aliasService.saveAlias(updatedAlias);
+            return "redirect:/";
+        } else {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            response.setContentType("text/plain");
+            response.setCharacterEncoding("UTF-8");
+            return null;
+        }
     }
 }
