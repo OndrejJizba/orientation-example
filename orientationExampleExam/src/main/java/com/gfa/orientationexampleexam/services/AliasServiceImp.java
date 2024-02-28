@@ -70,4 +70,26 @@ public class AliasServiceImp implements AliasService{
         }
         return aliasDTOList;
     }
+
+    @Override
+    public Alias deleteById(Integer id) throws Exception {
+        Alias alias = aliasRepository.findById(id).orElseThrow(() -> new Exception("Alias not found."));
+        aliasRepository.delete(alias);
+        return alias;
+    }
+
+    @Override
+    public Alias findBySecretCode(String secretCode) {
+        return aliasRepository.findBySecretCode(secretCode);
+    }
+
+    @Override
+    public Alias findById(Integer id) throws Exception {
+        return aliasRepository.findById(id).orElseThrow(() -> new Exception("Alias not found"));
+    }
+
+    @Override
+    public boolean existsById(Integer id) {
+        return aliasRepository.existsById(id);
+    }
 }

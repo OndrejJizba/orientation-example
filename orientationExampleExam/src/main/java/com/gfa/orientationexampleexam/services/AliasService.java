@@ -2,7 +2,6 @@ package com.gfa.orientationexampleexam.services;
 
 import com.gfa.orientationexampleexam.models.Alias;
 import com.gfa.orientationexampleexam.models.DTOs.AliasDTO;
-import com.gfa.orientationexampleexam.models.Link;
 
 import java.util.List;
 
@@ -14,4 +13,8 @@ public interface AliasService {
     boolean updateAlias(String url);
     Alias findByAlias(String alias);
     List<AliasDTO> getAllAliasDTO();
+    Alias deleteById(Integer id) throws Exception;
+    Alias findBySecretCode(String secretCode);
+    Alias findById(Integer id) throws Exception;
+    boolean existsById(Integer id);
 }
