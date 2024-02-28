@@ -133,17 +133,17 @@ Given the following table named `applicants`.
 - Write an SQL query to select the name of the 5 youngest applicants from the
   Czech Republic.
 ```mysql
-
+SELECT name FROM applicants WHERE country = 'Czech Republic' ORDER BY age ASC LIMIT 5;
 ```
 - Count the number of applicants from Hungary who are aged 35 and above.
 ```mysql
-
+SELECT COUNT(name) FROM applicants WHERE country = 'Hungary' AND age >= 35;
 ```
 - Retrieve the names of all applicants who have a name starting with the letter 'B'.
 ```mysql
-
+SELECT name FROM applicants WHERE name LIKE 'B%';
 ```
 - Determine the average age of applicants from each country.
 ```mysql
-
+SELECT country, AVG(age) FROM applicants GROUP BY country;
 ```
